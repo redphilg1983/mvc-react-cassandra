@@ -7,7 +7,7 @@ export class Films extends Component {
         super(props);
         this.state = { films: [], loading: true };
 
-        fetch('api/filmtvgames')
+        fetch('api/filmtvgames/Film')
             .then(response => response.json())
             .then(data => {
                 console.log(data);

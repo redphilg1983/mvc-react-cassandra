@@ -43,12 +43,30 @@ namespace filmtvgames.Controllers
                         session.Dispose();
 
                         return Ok(result);
-                        //return Ok("test");
                     }
                 });
             }
         }
 
+        [HttpGet("{Genre}")]
+        public ActionResult GetGenre(string genre)
+        {
+            using (cluster)
+            {
+                return retryPolicy.Execute(() =>
+                {
+                    using (var session = cluster.Connect("ekm"))
+                    {
+                        IMapper mapper = new Mapper(session);
 
+                        IEnumerable<FilmTvGame> result = mapper.Fetch<FilmTvGame>("SELECT * FROM voting WHERE genre = '" + genre + "' ALLOW FILTERING;");
+
+                        session.Dispose();
+
+                        return Ok(result);
+                    }
+                });
+            }
+        }
     }
 }
