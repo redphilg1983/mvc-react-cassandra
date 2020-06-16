@@ -5,29 +5,49 @@ export class Games extends Component {
 
     constructor(props) {
         super(props);
-        //this.state = { currentCount: 0 };
-        //this.incrementCounter = this.incrementCounter.bind(this);
-        this.state = { numbers: [0, 1, 2, 3] }
+        this.state = { games: [], loading: true };
+
+        fetch('api/filmtvgames/Game')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                this.setState({ games: data, loading: false });
+            });
     }
 
-    //incrementCounter() {
-    //    this.setState({
-    //        currentCount: this.state.currentCount + 1
-    //    });
-    //}
-
+    static renderGamesTable(games) {
+        return (
+            <table className='table'>
+                <thead>
+                    <tr>
+                        <th>Genre</th>
+                        <th>Title</th>
+                        <th>Votes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {games.map(game =>
+                        <tr key={game.guid}>
+                            <td>{game.genre}</td>
+                            <td>{game.title}</td>
+                            <td>{game.votes}</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+        );
+    }
+    
     render() {
+        let contents = this.state.loading
+            ? <p><em>Loading...</em></p>
+            : Games.renderGamesTable(this.state.games);
+
         return (
             <div>
-                <h1>Please Vote for your favourite Game, or add a new one to the list:</h1>
-
-                <p>This is a simple example of a React component.</p>
-
-                //<p>Current count: <strong>{this.state.currentCount}</strong></p>
-
-                <p>{this.state.numbers}</p>
-
-                <button onClick={this.incrementCounter}>Increment</button>
+                <h1>Games</h1>
+                <p>This component demonstrates fetching data from the server.</p>
+                {contents}
             </div>
         );
     }
