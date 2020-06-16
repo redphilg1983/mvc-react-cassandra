@@ -11,6 +11,7 @@ export class Games extends Component {
             .then(response => response.json())
             .then(data => {
                 console.log(data);
+                data.sort((a, b) => (b.votes > a.votes) ? 1 : -1);
                 this.setState({ games: data, loading: false });
             });
     }
