@@ -50,7 +50,7 @@ export class TV extends Component {
 
         setTimeout(() => {
             this.returnTVShows();
-        }, 100)
+        }, 300)
     }
 
     vote() {

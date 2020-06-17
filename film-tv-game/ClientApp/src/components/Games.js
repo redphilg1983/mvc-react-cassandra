@@ -50,7 +50,7 @@ export class Games extends Component {
 
         setTimeout(() => {
             this.returnGames();
-        }, 100)
+        }, 300)
     }
 
     vote() {

@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "film-tv-game", "film-tv-game.csproj", "{7092600A-46F2-48FE-98D3-1C966D938B4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "film-tv-game", "film-tv-game.csproj", "{7092600A-46F2-48FE-98D3-1C966D938B4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin", "..\Admin\Admin.csproj", "{91F0F85A-A530-4093-804F-F6F50100342C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7092600A-46F2-48FE-98D3-1C966D938B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7092600A-46F2-48FE-98D3-1C966D938B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7092600A-46F2-48FE-98D3-1C966D938B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F0F85A-A530-4093-804F-F6F50100342C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F0F85A-A530-4093-804F-F6F50100342C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F0F85A-A530-4093-804F-F6F50100342C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F0F85A-A530-4093-804F-F6F50100342C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

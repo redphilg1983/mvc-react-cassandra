@@ -21,7 +21,6 @@ export class Films extends Component {
         fetch('api/filmtvgames/Film')
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 var filmList = data.sort((a, b) => (b.votes > a.votes) ? 1 : -1);
                 this.setState(state => ({
                     films: filmList,
@@ -52,7 +51,7 @@ export class Films extends Component {
 
         setTimeout(() => {
             this.returnFilms();
-        }, 100)
+        }, 300)
     }
 
     vote() {
