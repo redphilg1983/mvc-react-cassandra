@@ -14,6 +14,7 @@ export class Films extends Component {
                 this.setState({ films: data, loading: false });
                 this.vote = this.vote.bind(this);
             });
+        this.addFilm = this.addFilm.bind(this);
     };
 
     returnFilms() {
@@ -29,6 +30,31 @@ export class Films extends Component {
             });
     }
 
+    addFilm() {
+        var filmName = document.getElementById("title").value;
+        var genre = "Film";
+        var body = filmName + "," + genre;
+        fetch('api/filmtvgames', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+
+        this.resetFilms();
+    }
+
+    resetFilms() {
+        this.setState(state => ({
+            loading: true
+        }));
+
+        setTimeout(() => {
+            this.returnFilms();
+        }, 100)
+    }
+
     vote() {
         var data = document.getElementById("data");
         var titleGenreVotes = data.options[data.selectedIndex].value;
@@ -40,13 +66,7 @@ export class Films extends Component {
             body: JSON.stringify(titleGenreVotes),
         })
 
-        this.setState(state => ({
-            loading: true
-        }));
-
-        setTimeout(() => {
-            this.returnFilms();
-        }, 100)
+        this.resetFilms();
     }
 
     static renderFilmsTable(films) {
@@ -100,7 +120,13 @@ export class Films extends Component {
 
                     {contents}
                 </div>
-                <button onClick={() => this.vote()}>Vote</button>
+                <div>
+                    <button onClick={() => this.vote()}>Vote</button>
+                </div>
+                <div>
+                    <h3>Would you like to add a new Film?  If so please fill in the below:</h3>
+                    <div><span>Title of the Film: </span><input id="title" type="text"></input><button onClick={() => this.addFilm()}>Add</button></div>
+                </div>
             </div>
         );
     }

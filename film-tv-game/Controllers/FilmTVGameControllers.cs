@@ -68,5 +68,37 @@ namespace film_tv_game.Controllers
                 });
             }
         }
+
+        [HttpPost]
+        public ActionResult PostNewItem ([FromBody] string data)
+        {
+            using (cluster)
+            {
+                return retryPolicy.Execute(() =>
+                {
+                    using (var session = cluster.Connect("ekm"))
+                    {
+                        IMapper mapper = new Mapper(session);
+
+                        var array = data.Split(",");
+                        var title = array[0];
+                        var genre = array[1];
+
+                        FilmTvGameModel item = new FilmTvGameModel
+                        {
+                            Title = title,
+                            Genre = genre,
+                            Votes = 1
+                        };
+
+                        mapper.Insert(item);
+
+                        session.Dispose();
+
+                        return Ok();
+                    }
+                });
+            }
+        }
     }
 }
