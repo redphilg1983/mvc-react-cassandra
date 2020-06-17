@@ -17,7 +17,6 @@ export class Films extends Component {
     };
 
     returnFilms() {
-        console.log('this has been hit');
         fetch('api/filmtvgames/Film')
             .then(response => response.json())
             .then(data => {
@@ -97,7 +96,7 @@ export class Films extends Component {
             <div>
                 <div>
                     <h1>Films</h1>
-                    <p>This component demonstrates fetching data from the server.</p>
+                    <p>Below are a list of Films that have been added and voted for.</p>
 
                     {contents}
                 </div>
