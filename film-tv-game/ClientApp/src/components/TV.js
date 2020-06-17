@@ -13,6 +13,7 @@ export class TV extends Component {
                 data.sort((a, b) => (b.votes > a.votes) ? 1 : -1);
                 this.setState({ TV: data, loading: false });
             });
+        this.addTvShow = this.addTvShow.bind(this);
     }
 
     returnTVShows() {
@@ -27,6 +28,31 @@ export class TV extends Component {
             });
     }
 
+    addTvShow() {
+        var tvShowName = document.getElementById("title").value;
+        var genre = "TV";
+        var body = tvShowName + "," + genre;
+        fetch('api/filmtvgames', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+
+        this.resetTVShows();
+    }
+
+    resetTVShows() {
+        this.setState(state => ({
+            loading: true
+        }));
+
+        setTimeout(() => {
+            this.returnTVShows();
+        }, 100)
+    }
+
     vote() {
         var data = document.getElementById("data");
         var titleGenreVotes = data.options[data.selectedIndex].value;
@@ -38,13 +64,7 @@ export class TV extends Component {
             body: JSON.stringify(titleGenreVotes),
         })
 
-        this.setState(state => ({
-            loading: true
-        }));
-
-        setTimeout(() => {
-            this.returnTVShows();
-        }, 100)
+        this.resetTVShows();
     }
 
     static renderTVTable(TV) {
@@ -94,7 +114,13 @@ export class TV extends Component {
                     <p>Below are a list of TV Shows that have been added and voted for.</p>
                     {contents}
                 </div>
-                <button onClick={() => this.vote()}>Vote</button>
+                <div>
+                    <button onClick={() => this.vote()}>Vote</button>
+                </div>
+                <div>
+                    <h3>Would you like to add a new TV Show?  If so please fill in the below:</h3>
+                    <div><span>Title of the Show: </span><input id="title" type="text"></input><button onClick={() => this.addTvShow()}>Add</button></div>
+                </div>
             </div>
         );
     }

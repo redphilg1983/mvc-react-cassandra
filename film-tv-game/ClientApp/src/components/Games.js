@@ -13,19 +13,44 @@ export class Games extends Component {
                 data.sort((a, b) => (b.votes > a.votes) ? 1 : -1);
                 this.setState({ games: data, loading: false });
             });
+        this.addGame = this.addGame.bind(this);
     }
 
     returnGames() {
         fetch('api/filmtvgames/Game')
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 var gameList = data.sort((a, b) => (b.votes > a.votes) ? 1 : -1);
                 this.setState(state => ({
                     games: gameList,
                     loading: false
                 }))
             });
+    }
+
+    addGame() {
+        var gameName = document.getElementById("title").value;
+        var genre = "Game";
+        var body = gameName + "," + genre;
+        fetch('api/filmtvgames', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body),
+        })
+
+        this.resetGames();
+    }
+
+    resetGames() {
+        this.setState(state => ({
+            loading: true
+        }));
+
+        setTimeout(() => {
+            this.returnGames();
+        }, 100)
     }
 
     vote() {
@@ -39,13 +64,7 @@ export class Games extends Component {
             body: JSON.stringify(titleGenreVotes),
         })
 
-        this.setState(state => ({
-            loading: true
-        }));
-
-        setTimeout(() => {
-            this.returnGames();
-        }, 100)
+        this.resetGames();
     }
 
     static renderGamesTable(games) {
@@ -95,7 +114,14 @@ export class Games extends Component {
                     <p>Below are a list of Games that have been added and voted for.</p>
                     {contents}
                 </div>
-                <button onClick={() => this.vote()}>Vote</button>
+                <div>
+                    <button onClick={() => this.vote()}>Vote</button>
+                </div>
+                <div>
+
+                    <h3>Would you like to add a new Game?  If so please fill in the below:</h3>
+                    <div><span>Title of the Game: </span><input id="title" type="text"></input><button onClick={() => this.addGame()}>Add</button></div>
+                </div>
             </div>
         );
     }
