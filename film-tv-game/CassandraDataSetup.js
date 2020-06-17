@@ -9,10 +9,10 @@ var generator = require('node-uuid-generator');
 
 
 client.execute(
-    "INSERT INTO ekm.voting(guid, genre, title, votes) VALUES(" + generator.generate() + ", 'Film', 'Avengers: Endgame', 5);",
+    "INSERT INTO ekm.voting(title, genre, votes) VALUES('Avengers: Endgame', 'Film', 23);",
     ).then(() =>
         client.execute(
-            "INSERT INTO ekm.voting(guid, genre, title, votes) VALUES (" + generator.generate() + ", 'Film', 'Spiderman: Far From Home', 3);",
+            "INSERT INTO ekm.voting(title, genre, votes) VALUES ('Spiderman: Far From Home', 'Film', 3);",
             (err, result) => {
                 console.log(err);
                 console.log(err, result);
@@ -20,7 +20,7 @@ client.execute(
         )
     ).then(() =>
         client.execute(
-            "INSERT INTO ekm.voting(guid, genre, title, votes) VALUES (" + generator.generate() + ", 'Film', 'Star Wars: The Rise of Skywalker', 2);",
+            "INSERT INTO ekm.voting(title, genre, votes) VALUES ('Star Wars: The Rise of Skywalker', 'Film',  2);",
             (err, result) => {
                 console.log(err);
                 console.log(err, result);
@@ -28,7 +28,7 @@ client.execute(
         )
     ).then(() =>
         client.execute(
-            "INSERT INTO ekm.voting(guid, genre, title, votes) VALUES (" + generator.generate() + ", 'TV', 'Star Trek: Enterprise', 4);",
+            "INSERT INTO ekm.voting(title, genre, votes) VALUES ('Star Trek: Enterprise', 'TV', 4);",
             (err, result) => {
                 console.log(err);
                 console.log(err, result);
@@ -36,7 +36,7 @@ client.execute(
         )
     ).then(() =>
         client.execute(
-            "INSERT INTO ekm.voting(guid, genre, title, votes) VALUES (" + generator.generate() + ", 'TV', 'The Curse of oak Island', 3);",
+            "INSERT INTO ekm.voting(title, genre, votes) VALUES ('The Curse of oak Island', 'TV', 3);",
             (err, result) => {
                 console.log(err);
                 console.log(err, result);
@@ -44,7 +44,7 @@ client.execute(
         )
     ).then(() =>
         client.execute(
-            "INSERT INTO ekm.voting(guid, genre, title, votes) VALUES (" + generator.generate() + ", 'TV', 'Prison Break', 1);",
+            "INSERT INTO ekm.voting(title, genre, votes) VALUES ('Prison Break', 'TV', 1);",
             (err, result) => {
                 console.log(err);
                 console.log(err, result);
@@ -52,7 +52,7 @@ client.execute(
         )
     ).then(() =>
         client.execute(
-            "INSERT INTO ekm.voting(guid, genre, title, votes) VALUES (" + generator.generate() + ", 'Game', 'COD: Modern Warfare', 6);",
+            "INSERT INTO ekm.voting(title, genre, votes) VALUES ('COD: Modern Warfare', 'Game', 6);",
             (err, result) => {
                 console.log(err);
                 console.log(err, result);
@@ -60,7 +60,7 @@ client.execute(
         )
     ).then(() =>
         client.execute(
-            "INSERT INTO ekm.voting(guid, genre, title, votes) VALUES (" + generator.generate() + ", 'Game', 'Apex Legends', 2);",
+            "INSERT INTO ekm.voting(title, genre, votes) VALUES ('Apex Legends', 'Game', 2);",
             (err, result) => {
                 console.log(err);
                 console.log(err, result);
@@ -69,7 +69,7 @@ client.execute(
     )
     .then(() =>
         client.execute(
-            "INSERT INTO ekm.voting(guid, genre, title, votes) VALUES (" + generator.generate() + ", 'Game', 'Minecraft Dungeons', 1);",
+            "INSERT INTO ekm.voting(title, genre, votes) VALUES ('Minecraft Dungeons', 'Game', 1);",
             (err, result) => {
                 console.log(err);
                 console.log(err, result);

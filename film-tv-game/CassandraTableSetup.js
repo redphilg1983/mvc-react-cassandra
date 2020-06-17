@@ -14,7 +14,7 @@ client
     )
     .then(() =>
         client.execute(
-            "CREATE TABLE IF NOT EXISTS ekm.voting(guid uuid primary key, genre text, title text, votes int);",
+            "CREATE TABLE IF NOT EXISTS ekm.voting(title text primary key, genre text, votes int);",
             (err, result) => {
                 console.log(err);
                 console.log(err, result);

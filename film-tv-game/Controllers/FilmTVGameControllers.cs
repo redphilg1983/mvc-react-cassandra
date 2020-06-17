@@ -9,15 +9,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Polly;
 
-namespace filmtvgames.Controllers
+namespace film_tv_game.Controllers
 {
     [Route("api/filmtvgames")]
-    public class FilmTVGames : Controller
+    public class FilmTVGameControllers : Controller
     {
         private readonly Policy retryPolicy;
         private readonly Cluster cluster;
 
-        public FilmTVGames()
+        public FilmTVGameControllers()
         {
             retryPolicy = Policy.Handle<NoHostAvailableException>()
                 .Retry();
@@ -38,7 +38,7 @@ namespace filmtvgames.Controllers
                     {
                         IMapper mapper = new Mapper(session);
 
-                        IEnumerable<FilmTvGame> result = mapper.Fetch<FilmTvGame>();
+                        IEnumerable<FilmTvGameModel> result = mapper.Fetch<FilmTvGameModel>();
 
                         session.Dispose();
 
@@ -59,7 +59,7 @@ namespace filmtvgames.Controllers
                     {
                         IMapper mapper = new Mapper(session);
 
-                        IEnumerable<FilmTvGame> result = mapper.Fetch<FilmTvGame>("SELECT * FROM voting WHERE genre = '" + genre + "' ALLOW FILTERING;");
+                        IEnumerable<FilmTvGameModel> result = mapper.Fetch<FilmTvGameModel>("SELECT * FROM voting WHERE genre = '" + genre + "' ALLOW FILTERING;");
 
                         session.Dispose();
 

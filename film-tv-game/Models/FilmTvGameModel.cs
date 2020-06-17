@@ -8,13 +8,11 @@ using Cassandra.Mapping.Attributes;
 namespace film_tv_game.Models
 {
     [Table("ekm.voting")]
-    public class FilmTvGame
+    public class FilmTvGameModel
     {
-        public Guid Guid { get; set; }
+        public string Title { get; set; }
 
         public string Genre { get; set; }
-
-        public string Title { get; set; }
 
         public int Votes { get; set; }
     }
